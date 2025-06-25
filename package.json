@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@tailwindcss/vite": "^4.1.10",
     "astro": "^5.10.1",
     "gsap": "^3.13.0",
