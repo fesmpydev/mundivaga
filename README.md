@@ -1,48 +1,23 @@
-# Astro Starter Kit: Basics
+# Mundivaga Landing Page
 
-```sh
-npm create astro@latest -- --template basics
-```
+Bienvenido a **Mundivaga**, una landing page inmersiva diseñada para inspirar a los usuarios a explorar mundos ocultos a través de una experiencia visual y dinámica. Este proyecto está construido con tecnologías modernas para ofrecer una interfaz rápida, accesible y atractiva.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 📖 Descripción
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Mundivaga** es una landing page que combina un diseño elegante con animaciones fluidas y funcionalidades de email marketing. Su propósito es captar la atención de los usuarios, animarlos a descubrir más sobre mundos ocultos y permitirles suscribirse a una lista de correo para recibir actualizaciones.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+### Características principales
 
-## 🚀 Project Structure
+- **Exploración inmersiva**: Animaciones suaves entre secciones al hacer scroll, impulsadas por GSAP.
+- **Diseño responsivo**: Estilizado con Tailwind CSS para garantizar una experiencia consistente en todos los dispositivos.
+- **Email marketing**: Integración con Mailchimp para capturar suscripciones de usuarios.
+- **Notificaciones**: Mensajes dinámicos para operaciones asíncronas usando Notyf.
+- **Rendimiento optimizado**: Construido con Astro para una carga rápida y una experiencia SEO-friendly.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠 Tecnologías utilizadas
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **[Astro](https://astro.build/)**: Framework para construir sitios web rápidos y optimizados.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Framework de CSS para un diseño moderno y responsivo.
+- **[GSAP](https://greensock.com/gsap/)**: Librería para animaciones fluidas al hacer scroll entre secciones.
+- **[Mailchimp](https://mailchimp.com/)**: Integración para gestionar suscripciones de email marketing.
+- **[Notyf](https://github.com/caroso1222/notyf)**: Notificaciones minimalistas para operaciones asíncronas.
