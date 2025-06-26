@@ -1,0 +1,50 @@
+---
+export interface Props {
+  photo: string;
+  category: string;
+  title: string;
+  date: string;
+  description: string;
+  mode?: "vertical" | "horizontal";
+}
+
+const {
+  photo,
+  category,
+  title,
+  date,
+  description,
+  mode = "vertical",
+} = Astro.props;
+---
+
+<article class={mode === "horizontal" ? "flex gap-2 items-center" : ""}>
+  <img
+    src={photo}
+    alt={`Imagen sobre ${title}`}
+    class={`object-cover aspect-square rounded-2xl ${mode === "horizontal" ? "w-[40%] h-[30vh]" : "w-full h-[50vh]"}`}
+  />
+
+  <div>
+    <span
+      class={`text-orange-400 mt-2 font-bold uppercase ${mode === "horizontal" ? "text-xs" : "text-base"}`}
+    >
+      {category}
+    </span>
+    <h2
+      class={`text-2xl font-bold text-black ${mode === "horizontal" ? "text-base line-clamp-3" : "text-2xl"}`}
+    >
+      {title}
+    </h2>
+    <time
+      datetime={date}
+      class={`mt-1 block text-gray-500 ${mode === "horizontal" ? "text-xs" : "text-base"}`}
+      >{date}</time
+    >
+    <p
+      class={`mt-2 line-clamp-3 ${mode === "horizontal" ? "text-xs" : "text-base"} `}
+    >
+      {description}
+    </p>
+  </div>
+</article>
