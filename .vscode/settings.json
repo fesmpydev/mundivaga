@@ -1,0 +1,6 @@
+{
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "scm.compactFolders": true,
+    "explorer.compactFolders": false
+}
