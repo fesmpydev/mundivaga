@@ -1,0 +1,21 @@
+---
+import CoverCallToAction from "./CoverCallToAction.astro";
+import CoverImagesGrid from "./CoverImagesGrid.astro";
+import CoverInfo from "./CoverInfo.astro";
+import Header from "@/components/shared/ui/Header.astro";
+import BgGradient from "@/components/shared/ui/BgGradient.astro";
+---
+
+<section class="relative w-full h-full">
+  <BgGradient />
+  <Header />
+
+  <article class="lg:flex lg:mt-[10vh] lg:w-11/12 mx-auto lg:h-[90vh]">
+    <CoverInfo />
+    <CoverImagesGrid />
+  </article>
+
+  <article class="lg:hidden">
+    <CoverCallToAction />
+  </article>
+</section>
