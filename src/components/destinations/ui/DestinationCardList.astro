@@ -1,0 +1,114 @@
+<section
+  class="w-full flex items-center overflow-x-auto gap-4 lg:overflow-hidden lg:grid lg:grid-cols-4"
+  id="destinations-grid"
+>
+</section>
+
+<script is:inline>
+  async function fetchDestinations(filter) {
+    try {
+      const request = await fetch("/api/destinations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ filter }),
+      });
+
+      if (!request.ok) {
+        const error = await request.json();
+        throw new Error(`Error fetching destinations`);
+      }
+
+      const response = await request.json();
+      return response.data.results;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function downloadImage(url, title) {
+    try {
+      const request = await fetch(url, {
+        method: "GET",
+        redirect: "follow",
+      });
+      if (!request.ok) throw new Error("Error fetching image");
+
+      const blob = await request.blob();
+      const tempUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = tempUrl;
+      link.download = `${title}.jpg`;
+      link.click();
+      URL.revokeObjectURL(tempUrl);
+    } catch (error) {
+      console.error(`Error downloading image`);
+    }
+  }
+
+  async function loadDestinations(filter = "paris") {
+    const container = document.getElementById("destinations-grid");
+    container.innerHTML = "<p>Cargando destinos...</p>";
+
+    try {
+      const destinations = await fetchDestinations(filter);
+
+      container.innerHTML = destinations
+        .map((dest, i) => {
+          const name = dest.alternative_slugs.es.replace(/-/g, " ");
+          const imageUrl = dest.urls.regular;
+          const downloadUrl = dest.urls.full;
+
+          return `
+              <article class="flex-[0_0_100%] md:flex-[0_0_50%] overflow-hidden rounded-lg shadow-md lg:flex-[0_0_100%]">
+                <figure>
+                  <img src="${imageUrl}" alt="Foto de ${name}" class="w-full max-h-[50vh] object-cover aspect-square group-hover:brightness-90 transition hover:scale-105 transition-transform duration-300 ease-linear" />
+                  <figcaption class="px-4 py-2 text-lg font-semibold line-clamp-1">${name}</figcaption>
+                </figure>
+
+                <div class="flex items-center justify-between">
+                  <span class="px-4 pb-4 text-sm text-gray-600 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                    </svg>
+                    ${dest.likes}
+                  </span>
+
+                  <button 
+                    class="px-4 pb-4 text-sm text-blue-600 download-btn cursor-pointer" 
+                    data-url="${downloadUrl}" 
+                    data-title="${name}"
+                  >
+                    Descargar
+                  </button>
+                </div>
+              </article>
+          `;
+        })
+        .join("");
+
+      const buttons = container.querySelectorAll(".download-btn");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const url = btn.dataset.url;
+          const title = btn.dataset.title;
+          downloadImage(url, title);
+        });
+      });
+    } catch (error) {
+      container.innerHTML =
+        "<p class='text-red-500'>Error al cargar los destinos.</p>";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadDestinations();
+
+    window.addEventListener("changed-destination", (e) => {
+      const filter = e.detail;
+      loadDestinations(filter);
+    });
+  });
+</script>
