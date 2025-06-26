@@ -1,0 +1,33 @@
+---
+export interface Props {
+  photo: string;
+  place: string;
+  country: string;
+  url: string;
+}
+
+const { photo, place, country, url } = Astro.props;
+---
+
+<a
+  href={url}
+  title={`Explorar ${place}, ${country}`}
+  class="block group flex-[0_0_90%] mt-3"
+>
+  <article
+    class="overflow-hidden rounded-lg shadow-md transition transform hover:scale-105"
+  >
+    <figure>
+      <img
+        src={photo}
+        alt={`Foto de ${place}, ${country}`}
+        class="w-full max-h-[50vh] object-cover aspect-square group-hover:brightness-90 transition"
+      />
+      <figcaption class="px-4 py-2 text-lg font-semibold line-clamp-1">
+        {place}
+      </figcaption>
+    </figure>
+
+    <span class="px-4 pb-4 text-sm text-gray-600 block">{country}</span>
+  </article>
+</a>
