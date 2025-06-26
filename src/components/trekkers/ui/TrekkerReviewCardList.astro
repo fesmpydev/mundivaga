@@ -1,0 +1,10 @@
+---
+import { trekkerReviewExample } from "../constants/trekkerReviewExample";
+import TrekkerReviewCard from "./TrekkerReviewCard.astro";
+---
+
+<section
+  class="mt-5 mb-5 pb-10 flex items-center gap-4 overflow-x-auto scrollbar-hidden lg:grid lg:grid-cols-4 lg:overflow-hidden"
+>
+  {trekkerReviewExample.map((review) => <TrekkerReviewCard {...review} />)}
+</section>
