@@ -1,0 +1,27 @@
+---
+import type { UnplashPhotoResponse } from "@/interfaces/unplash.interface";
+import { unplashRequestTo } from "@/services/unplash.services";
+import { storiesList } from "../constants/storiesList";
+import StoryCard from "./StoryCard.astro";
+const paisajes = (await unplashRequestTo(
+  "/search/photos?query=paisajes"
+)) as UnplashPhotoResponse;
+---
+
+<article class="mt-3 flex flex-col gap-4 lg:grid lg:grid-cols-2">
+  {(<StoryCard {...storiesList[0]} photo={paisajes.results[0].urls.regular} />)}
+
+  <div class="flex flex-col gap-5">
+    {
+      storiesList.slice(1).map((story, index) => {
+        return (
+          <StoryCard
+            {...story}
+            mode="horizontal"
+            photo={paisajes.results[index + 1].urls.regular}
+          />
+        );
+      })
+    }
+  </div>
+</article>
