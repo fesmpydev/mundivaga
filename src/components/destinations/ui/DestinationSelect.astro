@@ -1,0 +1,24 @@
+<select
+  name="destinations"
+  id="destinations"
+  class="mt-2 mb-2 outline-none font-medium"
+>
+  <option value="paris">Popular</option>
+  <option value="Hallstatt">Ocultos</option>
+  <option value="Mountains">Naturales</option>
+  <option value="Colorful city">Estética</option>
+</select>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const select = document.getElementById("destinations");
+
+    select.addEventListener("change", (e) => {
+      const event = new CustomEvent("changed-destination", {
+        detail: e.target.value,
+      });
+
+      window.dispatchEvent(event);
+    });
+  });
+</script>
