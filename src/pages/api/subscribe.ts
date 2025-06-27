@@ -1,5 +1,10 @@
 import type { APIContext } from "astro";
 import mailchimp from "@mailchimp/mailchimp_marketing";
+import type {
+  SubscribeRequest,
+  ErrorResponse,
+  SubscribeResponse,
+} from "@/interfaces/destinations.api";
 
 export const prerender = false;
 
@@ -7,18 +12,6 @@ mailchimp.setConfig({
   apiKey: import.meta.env.MAILCHIMP_API_KEY,
   server: "us7",
 });
-
-interface SubscribeRequest {
-  email: string;
-}
-
-interface SubscribeResponse {
-  message: string;
-}
-
-interface ErrorResponse {
-  error: string;
-}
 
 export async function POST({ request }: APIContext): Promise<Response> {
   try {
